@@ -1,0 +1,135 @@
+#!/bin/bash
+R='\033[1;31m'
+RED="\e[101m"
+G='\033[90m'
+W="\033[0m"
+V='\033[1;32m'
+
+if [ ! -e ~/LogTmux ]; then
+echo
+echo -e "${G}(${W}+${G}) ${R}ERROR: ${W}LogTmux no está instalado en HOME"
+echo -e "${G}(${W}+${G}) ${W}Favor de instalar en HOME"
+echo
+exit
+fi
+depends() {
+echo
+echo -e "${G}(${W}+${G}) ${W}INSTALANDO DEPENDENCIAS..."
+echo
+if [ ! -x /data/data/com.termux/files/usr/bin/mpv ]; then
+        yes|pkg install mpv
+fi
+
+if [ ! -x /data/data/com.termux/files/usr/bin/pv ]; then
+        yes|pkg install pv
+fi
+}
+trap ctrl_c 2
+function ctrl_c() {
+sleep 0.5
+banner
+sleep 0.5
+echo
+echo -e "   ${R}[${G}+${R}]${W} GRACIAS POR INSTALAR LOGTMUX ${R}[${G}+${R}]${W}"
+echo "                By ERROR 404"
+echo
+echo -e "             ${R}[${G}+${R}]${W} TELEGRAM ${R}[${G}+${R}]${W}"
+echo
+echo -e "${R}[${G}+${R}]${W} CANAL: ${G}https://t.me/error404_community"
+echo -e "${R}[${G}+${R}]${W} CHAT: ${G}https://t.me/Error404_00"
+echo
+exit
+}
+function banner() {
+	clear
+	echo -e ${R}"      	   ──▄────▄▄▄▄▄▄▄────▄───
+	   ─▀▀▄─▄█████████▄─▄▀▀──
+	   ─────██─▀███▀─██──────
+	   ───▄─▀████▀████▀─▄────
+  	   ─▀█────██▀█▀██────█▀── "
+echo -e ${R} " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${G}
+ ┏┓───┏━━━┓┏━━━┓───┏━━━━┓┏━┓┏━┓┏┓─┏┓┏━┓┏━┓
+ ┃┃───┃┏━┓┃┃┏━┓┃───┃┏┓┏┓┃┃┃┗┛┃┃┃┃─┃┃┗┓┗┛┏┛
+ ┃┃───┃┃─┃┃┃┃─┗┛───┗┛┃┃┗┛┃┏┓┏┓┃┃┃─┃┃─┗┓┏┛─
+ ┃┃─┏┓┃┃─┃┃┃┃┏━┓─────┃┃──┃┃┃┃┃┃┃┃─┃┃─┏┛┗┓─
+ ┃┗━┛┃┃┗━┛┃┃┗┻━┃─────┃┃──┃┃┃┃┃┃┃┗━┛┃┏┛┏┓┗┓
+ ┗━━━┛┗━━━┛┗━━━┛─────┗┛──┗┛┗┛┗┛┗━━━┛┗━┛┗━┛
+  ${R}┏━━━━━•❅•°•❈ ${W} LOGIN-TERMUX  ${R}•°•❅•━━━━━┓
+"
+echo -ne "        " ; date
+}
+banner
+depends
+banner
+echo
+echo -e "${G}(${W}+${G}) ${W}Escribe tu nombre: "
+echo -ne "    ╰──➤ ${R}"
+read -r name
+if [ -z "${name}" ]; then
+	banner
+	echo
+	echo -e "${R}(${G}X${R})${W} Configuraré el username por defecto."
+name='ERROR-[404]'
+sleep 2
+fi
+echo "usr=(${name})" > .user
+banner
+function pass() {
+	banner
+	echo
+	echo -e "${G}(${W}+${G}) ${W}Escribe una contraseña: "
+	echo -ne "    ╰──➤ ${R}"
+	read -r passwd
+	if [ -z "${passwd}" ]; then
+		pass
+	fi
+}
+pass
+function pass2() {
+	banner
+	echo
+	echo -e "${G}(${W}+${G}) ${W}Confirma tu contraseña: "
+	echo -ne "    ╰──➤ ${R}"
+	read -r passwd2
+	if [ -z "${passwd2}" ]; then
+		pass2
+	fi
+}
+pass2
+if [ ${passwd} != ${passwd2} ]; then
+	echo
+	echo -e "${R}ERROR: ${W}Las contraseñas no coinciden."
+	echo
+	sleep 1
+	exit
+fi
+echo "password=(${passwd2})" > .passwd
+sleep 2
+banner
+echo
+echo -e "${G}(${W}√${G}) ${V}Datos guardados, ahora reinicia termux"
+echo
+sleep 0.5
+chmod +x ~/LogTmux/banners/1
+chmod +x ~/LogTmux/banners/2
+chmod +x ~/LogTmux/files/bash.bashrc.
+chmod +x ~/LogTmux/files/termux.properties
+chmod +x ~/LogTmux/files/font.ttf
+chmod +x ~/LogTmux/files/sound.m4a
+mv $PREFIX/etc/bash.bashrc $PREFIX/etc/bash.bashrc-backup
+cp $HOME/LogTmux/files/bash.bashrc. $PREFIX/etc/bash.bashrc
+if ! [ -d ~/.termux ]; then
+	mkdir ~/.termux
+fi
+if [ -a "$PREFIX/etc/motd" ]; then
+rm -rf $PREFIX/etc/motd
+fi
+sleep 1
+cat ~/LogTmux/files/termux.properties > ~/.termux/termux.properties
+cat ~/LogTmux/files/font.ttf > ~/.termux/font.ttf
+
+if [ -a ~/.termux/colors.properties ]; then
+	rm ~/.termux/colors.properties
+fi
+
+# Yo soy ERROR-404
