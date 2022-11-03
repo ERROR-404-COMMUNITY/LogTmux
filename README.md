@@ -13,12 +13,8 @@ Herramienta para añadir contraseña a Termux
 
 <p align="center">
 <a href="https://github.com/ERROR-404-COMMUNITY/LogTmux/stargazers/"><img title="ESTRELLAS" src="https://img.shields.io/github/stars/ERROR-404-COMMUNITY/LogTmux?color=red&style=flat-square"></a>
-<a href="https://github.com/ERROR-404-COMMUNITY/LogTmux/network/members"><img title="FORKS" src="https://img.shields.io/github/forks/ERROR-404-COMMUNITY/LogTmux?color=red&style=flat-square"></a>
-</p>
-
-<p align="center">
 <a href="#"><img title="Language" src="https://badges.frapsoft.com/bash/v1/bash.png?v=103"></a>
-![PyPI - Downloads](https://static.pepy.tech/badge/LogTmux
+<a href="https://github.com/ERROR-404-COMMUNITY/LogTmux/network/members"><img title="FORKS" src="https://img.shields.io/github/forks/ERROR-404-COMMUNITY/LogTmux?color=red&style=flat-square"></a>
 </p>
 
 
