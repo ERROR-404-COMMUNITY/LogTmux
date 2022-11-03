@@ -18,6 +18,7 @@ Herramienta para añadir contraseña a Termux
 
 <p align="center">
 <a href="#"><img title="Language" src="https://badges.frapsoft.com/bash/v1/bash.png?v=103"></a>
+![PyPI - Downloads](https://static.pepy.tech/badge/LogTmux
 </p>
 
 
